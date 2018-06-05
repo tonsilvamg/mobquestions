@@ -22,9 +22,14 @@ def index():
     res = col_users.find({})
     return json_util.dumps(list(res)), 201
 
-@app.route('/user', methods=['POST'])
+@app.route('/users', methods=['PUT'])
 def create_user():
     data = request.get_json()
     data['password'] = generate_password_hash(data['password'])
     col_users.insert_one(data)
     return 'usuario ' + data['username'] + ' criado.', 201
+
+@app.route('/users/<username>', methods=['GET'])
+def get_user(username):
+    return username, 200
+

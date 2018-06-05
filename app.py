@@ -9,6 +9,8 @@ from config import MONGO_URI
 
 app = Flask(__name__)
 app.config['MONGO_URI'] = MONGO_URI
+app.config['DEBUG'] = True
+
 app_context = app.app_context()
 app_context.push()
 

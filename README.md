@@ -15,8 +15,8 @@ git clone https://github.com/<seu_nome_de_usuario>/mobquestions
 
 3. Instale as dependências. Execute no prompt de comando ou no shell: `python -m pip install -r requirements.txt`
 
-4. Defina variáveis de ambiente *FLASK_DEBUG* e *FLASK_APP*. Em Windows:
-`set FLASK_DEBUG=1` e `set FLASK_APP=app.py`
+4. Defina a variável de ambiente *FLASK_APP*. Em Windows:
+`set FLASK_APP=app.py`
 
 5. Para rodar o app flask execute: `python -m flask run --host=0.0.0.0 --port=8088`. Para testar, acesse pelo navegador o endereço http://localhost:8088/
 
@@ -61,5 +61,23 @@ atualiza os dados do usuário correspondente (pelo username). os campos possíve
 modifica o password do usuário correspondente (pelo username). 
 exemplo de dados de request: 
 ```javascript
- {"password": "value"}
- ```
+{"password": "value"}
+```
+
+5. GET /v1/questions/<question_id> (obtenção de questão)
+retorna os dados da questão correpondente (pelo username) em formato JSON e o status code 200; ou status code 404 caso a questão não exista.
+
+
+6. POST /v1/questions/<question_id>/comment (comantar em questão)
+retorna os dados da questão atualizada em formato json e o status code 200 em caso de sucesso.
+se a questão não for encontrada, status code 404. se o usuário não for encontrado, ou os dados enviados estiverem inválidos retornar status code 401.
+```javascript
+{"username": "mark", "message": "essa questao e facil"}
+```
+
+7. POST /v1/questions/search (buscar questões)
+retorna as questões encontradas baseadas nos critérios de busca e o status code 200 em caso de sucesso. retorna status code 401 caso os dados enviados estiverem inválidos.
+exemplo de dados de request: 
+```javascript
+{"disciplina": [1, 3], "ano": 2013}
+```

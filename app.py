@@ -24,7 +24,7 @@ def index():
     res = col_users.find({})
     return json_util.dumps(list(res)), 201
 
-@app.route('/users', methods=['PUT'])
+@app.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
     data['password'] = generate_password_hash(data['password'])
@@ -35,3 +35,10 @@ def create_user():
 def get_user(username):
     return username, 200
 
+# rota para exemplificar como utilizar obter variaveis
+# de url. teste acessando 
+# http://localhost:8088/questions/search?disciplina=BancoDeDados 
+@app.route('/questions/search', methods=['GET'])
+def search():
+    disciplina = request.args.get('disciplina')
+    return disciplina, 200

@@ -1,0 +1,31 @@
+{
+	"variables": [],
+	"info": {
+		"name": "mobquestions",
+		"_postman_id": "fe003022-590b-4a44-9676-afa1b56f53b7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"url": "localhost:8088/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"schulaz\", \"password\": \"a123\"}\n"
+				},
+				"description": "cria um usuário na coleção users"
+			},
+			"response": []
+		}
+	]
+}

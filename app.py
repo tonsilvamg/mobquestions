@@ -53,7 +53,7 @@ def get_user_GET(username_url):
       return 'Não encontrado!', 404
     else:
       return json_util.dumps(encontrado) , 200 # caso o usuário seja criado
-         
+          
 
 # rota para exemplificar como utilizar obter variaveis
 # de url. teste acessando 

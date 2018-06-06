@@ -31,9 +31,29 @@ def create_user():
     col_users.insert_one(data)
     return 'usuario ' + data['username'] + ' criado.', 201
 
-@app.route('/users/<username>', methods=['GET'])
-def get_user(username):
-    return username, 200
+@app.route('/users', methods=['PUT'])
+def create_user_put():
+    data = request.get_json()
+    data['password'] = generate_password_hash(data['password'])
+    col_users.insert_one(data)
+    return 'usuario ' + data['username'] + ' criado.', 201
+
+@app.route('/users/<username_url>', methods=['POST'])
+def get_user_POST(username_url):
+    encontrado = col_users.find_one({'username':username_url}) 
+    if not encontrado: 
+      return username_url + ' não existe!', 203
+    else:
+      return username_url + ' já está criado!' , 201 # caso o usuário seja criado
+
+@app.route('/users/<username_url>', methods=['GET'])
+def get_user_GET(username_url):
+    encontrado = col_users.find_one({'username':username_url}) 
+    if not encontrado: 
+      return 'Não encontrado!', 404
+    else:
+      return json_util.dumps(encontrado) , 200 # caso o usuário seja criado
+         
 
 # rota para exemplificar como utilizar obter variaveis
 # de url. teste acessando 

@@ -1,5 +1,8 @@
 Flask
 pymongo
 Flask-PyMongo
+pyjwt
 gunicorn
 redis
+flask-testing
+nose  
